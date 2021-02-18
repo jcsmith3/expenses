@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, useParams} from 'react-router-dom'
 import Header from '../components/Header'
 import Dashboard from '../components/DashBoard'
 import AddExpense from '../components/AddExpense'
@@ -15,7 +15,7 @@ export default () => (
       <Switch>
         <Route exact path="/" component={ Dashboard } />
         <Route path="/add" component={ AddExpense } />
-        <Route path="/edit" component={ EditExpense } />
+        <Route path="/edit/:id" component={ EditExpense } />
         <Route path="/help" component={ HelpPage } />
         <Route component={ NotFound }/>
       </Switch>

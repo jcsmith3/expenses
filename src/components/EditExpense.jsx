@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default () => (
-  <div>
-    Edit Expense Component
-  </div>
-)
+export default props => {
+  console.log( props )
+  return (
+    <div>
+      Edit Expense Component
+    </div>
+  )
+}
