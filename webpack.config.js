@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/app.jsx',
     output: {
         path: path.join(__dirname,'./public'),
         filename: 'bundle.js'
@@ -10,13 +10,14 @@ module.exports = {
 
     devServer:{
         contentBase: path.join(__dirname,'./public'),
-        port: 8080
+        port: 8080,
+        historyApiFallback: true
     },
 
     module: {
         rules: [
             {
-            test: /\.js$/,
+            test: /\.(js|jsx)$/,
             exclude: /node_modules/,
             include: path.join(__dirname,'src'),
             use: [
@@ -36,5 +37,8 @@ module.exports = {
         }
         ]
     },
-    devtool: 'eval-source-map'
+        resolve: {
+            extensions: ['*', '.js', '.jsx']
+        },
+        devtool: 'eval-source-map'
 }
