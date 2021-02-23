@@ -1,7 +1,11 @@
 import React from 'react'
+import ExpenseList from './ExpenseList'
+import ExpenseListFilters from './ExpenseListFilters'
 
-export default () => (
+export default props => (
   <div>
-    Dashboard Component
+    <ExpenseListFilters />
+    <ExpenseList />
   </div>
 )
+
