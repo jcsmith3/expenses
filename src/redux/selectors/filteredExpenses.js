@@ -16,8 +16,8 @@ export default (expenses, { text, sortBy, dateRange }) => {
     .sort((a, b) => {
       switch (sortBy.type) {
         case 'date':
-          if (sortBy.desc) return a.createdAt > b.createdAt ? 1 : -1
-          else if (!sortBy.desc) return a.createdAt > b.createdAt ? -1 : 1
+          if (sortBy.desc) return a.createdAt < b.createdAt ? 1 : -1
+          else if (!sortBy.desc) return a.createdAt < b.createdAt ? -1 : 1
           else return 0
 
         case 'amount':
