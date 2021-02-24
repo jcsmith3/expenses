@@ -1,7 +1,12 @@
+import dayjs from 'dayjs'
+
 const filterState = {
   text: '',
   sortBy: { type: 'date', desc: true },
-  dateRange: { startDate: undefined, endDate: undefined }
+  dateRange: {
+    startDate: dayjs().startOf('month')['$d'],
+    endDate: dayjs().endOf('month')['$d']
+  }
 }
 
 export default (state = filterState, action) => {
@@ -11,7 +16,7 @@ export default (state = filterState, action) => {
     case 'SORT_BY':
       return { ...state, sortBy: action.value }
     case 'SET_DATE_RANGE':
-      return { ...state, dateRange: action.value }
+      return { ...state, dateRange: { ...state.dateRange, ...action.value } }
 
     default:
       return state

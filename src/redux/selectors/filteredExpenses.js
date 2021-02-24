@@ -1,13 +1,10 @@
+import dayjs from 'dayjs'
 
 export default (expenses, { text, sortBy, dateRange }) => {
   return expenses
     .filter(expense => {
-      const startDateMatch =
-        typeof dateRange.startDate !== 'number' ||
-        expense.createdAt >= dateRange.startDate
-      const endDateMatch =
-        typeof dateRange.endDate !== 'number' ||
-        expense.createdAt <= dateRange.endDate
+      const startDateMatch = dateRange.startDate ? dayjs( expense.createdAt ).isAfter( dateRange.startDate ) : true
+      const endDateMatch = dateRange.endDate ? dayjs( expense.createdAt ).isBefore( dateRange.endDate ) : true
       const textMatch = expense.description
         .toLowerCase()
         .includes(text.toLowerCase())

@@ -1,5 +1,6 @@
 import React from 'react'
-import DatePicker from 'react-date-picker'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
 
 export default class ExpenseForm extends React.Component {
   constructor( props ) {
@@ -34,8 +35,7 @@ export default class ExpenseForm extends React.Component {
       <form>
         { this.state.error && <p>{`Please enter ${ this.state.error }`}</p>}
         <DatePicker
-          value={ this.state.createdAt }
-          clearIcon={null}
+          selected={ this.state.createdAt }
           onChange={ value => value && this.setState( state => ({ ...state, createdAt: value }))}
         />
         <input

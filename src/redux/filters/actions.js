@@ -8,7 +8,7 @@ export const sortBy = ({ type, desc = true }) => ({
   value: { type, desc }
 })
 
-export const setDateRange = ({ startDate = undefined, endDate = undefined }) => ({
+export const setDateRange = value => ({
   type: 'SET_DATE_RANGE',
-  value: { startDate, endDate }
+  value
 })
