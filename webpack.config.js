@@ -8,12 +8,13 @@ module.exports = env => {
         mode: env.production ? 'production' : 'development',
         entry: './src/app.jsx',
         output: {
-        path: path.join(__dirname, './public'),
+        path: path.join(__dirname, 'public', 'dist'),
         filename: 'bundle.js',
         },
         plugins,
         devServer: {
         contentBase: path.join(__dirname, './public'),
+        publicPath: '/dist/',
         port: 8080,
         historyApiFallback: true
         },
