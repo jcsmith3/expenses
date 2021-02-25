@@ -1,45 +1,50 @@
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-module.exports = {
-    mode: 'development',
-    entry: './src/app.jsx',
-    // entry: './src/test/hoc.js',
-    output: {
-        path: path.join(__dirname,'./public'),
-        filename: 'bundle.js'
-    },
-
-    devServer:{
-        contentBase: path.join(__dirname,'./public'),
+module.exports = env => {
+    const plugins = []
+    if ( env.production ) plugins.push(new MiniCssExtractPlugin())
+    return {
+        mode: env.production ? 'production' : 'development',
+        entry: './src/app.jsx',
+        output: {
+        path: path.join(__dirname, './public'),
+        filename: 'bundle.js',
+        },
+        plugins,
+        devServer: {
+        contentBase: path.join(__dirname, './public'),
         port: 8080,
         historyApiFallback: true
-    },
+        },
 
-    module: {
+        module: {
         rules: [
             {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            include: path.join(__dirname,'src'),
+            include: path.join(__dirname, 'src'),
             use: [
                 {
-                loader: 'babel-loader',
-            }
+                loader: 'babel-loader'
+                }
             ]
-        },
-        {
+            },
+            {
             test: /\.s?[ac]ss$/,
             use: [
+                env.production ?
+                MiniCssExtractPlugin.loader :
                 'style-loader',
                 'css-loader',
                 'sass-loader'
-                ]
-
-        }
+            ]
+            }
         ]
-    },
-        resolve: {
-            extensions: ['*', '.js', '.jsx']
         },
-        devtool: 'eval-source-map'
+        resolve: {
+        extensions: ['*', '.js', '.jsx']
+        },
+        devtool: env.production ? 'source-map' : 'eval-source-map'
+    }
 }
