@@ -9,7 +9,7 @@ export default ({ expense })=> (
         </Link>
         <div className="expenseItem__details">
           <p>{ dayjs(expense.createdAt).format('MM/DD/YYYY') }</p>
-          <p>${ expense.amount/100 }</p>
+          <p>{ Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format( expense.amount ) }</p>
         </div>
     </div>
 )
